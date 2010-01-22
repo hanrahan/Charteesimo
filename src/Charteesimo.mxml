@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="onCreationComplete()" backgroundColor="#FFFFFF" backgroundGradientColors="[#FFFFFF, #FFFFFF]" horizontalAlign="center" verticalAlign="middle">
+	<mx:Script source="includes/ChartFactory.as"/>
+	<mx:Script source="includes/TestDataFactory.as"/>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import valueObjects.SeriesData;
+			import valueObjects.Chart;
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+            public var chartOptions:ArrayCollection = new ArrayCollection([ 
+                  {label:"Area", data:1}, 
+                  {label:"Bar", data:2}, 
+                  {label:"Column", data:3},
+                  {label:"Line", data:4}, 
+                  {label:"Pie", data:5}, 
+                  {label:"Plot", data:6}  
+            ]);
+            
+            public function chartCloseHandler(event:Event):void{
+               Alert.show(ComboBox(event.target).selectedItem.label);	
+            }
+            
+			public function onCreationComplete():void 
+            {    	     	   	            	
+            	 createChart(buildChartResult());
+            }
+            
+		]]>
+	</mx:Script>
+	<mx:ComboBox dataProvider="{chartOptions}" close="chartCloseHandler(event)"/>
+	
+	
+	
+</mx:Application>
